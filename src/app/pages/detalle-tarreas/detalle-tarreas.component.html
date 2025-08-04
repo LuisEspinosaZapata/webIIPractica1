@@ -1,0 +1,118 @@
+
+ 
+ <form (ngSubmit)="guardar(formulario)" #formulario="ngForm" class="formulario max-w-md mx-auto bg-white p-6 rounded-xl shadow-md space-y-4">
+   <h2 class="text-2xl font-bold mb-4">Detalle Tarea Editar</h2>  
+  <input
+      type="number"
+      placeholder="Cédula"
+      name="cedula"
+      [(ngModel)]="cedula"
+      required
+      class="w-full border border-gray-300 p-2 rounded"
+    />
+
+    <input
+      type="text"
+      placeholder="Nombre"
+      name="nombre"
+      [(ngModel)]="nombre"
+      required
+      class="w-full border border-gray-300 p-2 rounded"
+    />
+
+    <input
+      type="text"
+      placeholder="Apellido"
+      name="apellido"
+      [(ngModel)]="apellido"
+      required
+      class="w-full border border-gray-300 p-2 rounded"
+    />
+
+    <input
+      type="email"
+      placeholder="Email"
+      name="email"
+      [(ngModel)]="email"
+      required
+      class="w-full border border-gray-300 p-2 rounded"
+    />
+
+    <input
+      type="text"
+      placeholder="Teléfono"
+      name="telefono"
+      [(ngModel)]="telefono"
+      required
+      class="w-full border border-gray-300 p-2 rounded"
+    />
+
+    <textarea
+      placeholder="Tarea"
+      name="tarea"
+      [(ngModel)]="tarea"
+      required
+      rows="4"
+      class="w-full border border-gray-300 p-2 rounded resize-y"
+    ></textarea>
+
+    <div class="flex justify-between">
+
+      <button
+        type="submit"
+        [disabled]="!id"
+        class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition disabled:opacity-50"
+      >
+        {{ id ? 'Actualizar' : 'Enviar' }}
+      </button>
+
+
+      <button
+        type="button"
+        (click)="limpiarFormulario(formulario)"
+        [disabled]="!id"
+        class="bg-gray-300 text-black px-4 py-2 rounded hover:bg-gray-400 transition disabled:opacity-50"
+      >
+        Limpiar
+      </button>
+    </div>
+  </form>
+
+
+
+
+
+<div class="max-w-2xl mx-auto mt-10 p-6 bg-white shadow-md rounded-md">
+  <h3 class="text-xl font-semibold mb-4">Tareas Registradas</h3>
+
+  <ul>
+    <li
+      *ngFor="let tarea of tareas"
+      class="border p-3 rounded mb-2 shadow-sm flex justify-between items-start gap-4"
+    >
+      <div>
+        <p><strong>Cédula:</strong> {{ tarea.cedula }}</p>
+        <p><strong>Nombre:</strong> {{ tarea.nombre }} {{ tarea.apellido }}</p>
+        <p><strong>Email:</strong> {{ tarea.email }}</p>
+        <p><strong>Teléfono:</strong> {{ tarea.telefono }}</p>
+        <p><strong>Tarea:</strong> {{ tarea.tarea }}</p>
+      </div>
+
+      <div class="flex flex-col gap-2">
+        <button
+          class="bg-yellow-400 text-black px-3 py-1 rounded hover:bg-yellow-500 transition"
+          (click)="editartarea(tarea)"
+        >
+          Editar
+        </button>
+        <button
+          class="bg-red-600 text-white px-3 py-1 rounded hover:bg-red-700 transition"
+          (click)="eliminartarea(tarea.id)"
+        >
+          Eliminar
+        </button>
+      </div>
+    </li>
+  </ul>
+</div>
+
